@@ -6,16 +6,17 @@ const prompt = "Hola! Que tal?\n";
 output.write(prompt);
 stdout.write(prompt);
 stdin.on("data", (data) => {
-        output.write(data);
-        const stopWord = data.toString().replace(/\n/g, '');
-        if(stopWord == 'exit') {
-            console.log('Hasta luego!');
-            process.exit();
-        }
-    });
+  output.write(data);
+  //Remove new line after stop-word
+  const stopWord = data.toString().replace(/\n/g, '');
+  if(stopWord == 'exit') {
+    console.log('Hasta luego!');
+    process.exit();
+  }
+});
 
 process.on("SIGINT", () => {
-    console.log('\nHasta luego!');
-    process.exit();
+  console.log('\nHasta luego!');
+  process.exit();
 });
 
